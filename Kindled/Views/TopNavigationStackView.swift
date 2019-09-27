@@ -24,6 +24,7 @@ class TopNavigationStackView: UIStackView {
     }
     
     fileprivate func setupView() {
+        
         fireImageView.contentMode = .scaleAspectFit
         distribution = .equalCentering
         heightAnchor.constraint(equalToConstant: 80).isActive = true
