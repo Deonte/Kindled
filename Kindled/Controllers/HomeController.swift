@@ -15,13 +15,6 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomControlsStackView()
 
-//    let users = [
-//        User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1"),
-//        User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2"),
-//        User(name: "Brittany", age: 29, profession: "Web Developer", imageName: "woman3"),
-//        User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageName: "lady4c")
-//    ]
-    
     let cardViewModels = [
         User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1").toCardViewModel(),
         User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2").toCardViewModel(),
@@ -62,22 +55,6 @@ class HomeController: UIViewController {
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
-        
-//        users.forEach { (user) in
-//            let cardView = CardView(frame: .zero)
-//            cardView.imageView.image = UIImage(named: user.imageName)
-//            cardView.informationLabel.text = "\(user.name) \(user.age)\n\(user.profession)"
-//
-//            let attributedText = NSMutableAttributedString(string: user.name, attributes: [.font : UIFont.systemFont(ofSize: 32, weight: .heavy)])
-//            attributedText.append(NSAttributedString(string: "  \(user.age)", attributes: [.font : UIFont.systemFont(ofSize: 24, weight: .regular)]))
-//            attributedText.append(NSAttributedString(string: "\n\(user.profession)", attributes: [.font : UIFont.systemFont(ofSize: 20, weight: .regular)]))
-//
-//            cardView.informationLabel.attributedText = attributedText
-//
-//
-//            cardsDeckView.addSubview(cardView)
-//            cardView.fillSuperview()
-//        }
     }
 }
 
