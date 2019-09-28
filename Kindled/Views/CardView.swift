@@ -95,22 +95,31 @@ class CardView: UIView {
     fileprivate let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-        print("handle tap and cycle photos")
-        let tapLocation = gesture.location(in: nil)
-        let shouldAdvanceNextPhoto = tapLocation.x > frame.width/2 ? true : false
         
-        if shouldAdvanceNextPhoto {
-            imageIndex = min(imageIndex + 1, cardViewModel.imageNames.count - 1)
+        let canTap = cardViewModel.imageNames.count > 1
+        
+        if canTap {
+            print("handle tap and cycle photos")
+            let tapLocation = gesture.location(in: nil)
+            let shouldAdvanceNextPhoto = tapLocation.x > frame.width/2 ? true : false
+            
+            if shouldAdvanceNextPhoto {
+                imageIndex = min(imageIndex + 1, cardViewModel.imageNames.count - 1)
+            } else {
+                imageIndex = max(0, imageIndex - 1)
+            }
+            
+            let imageName = cardViewModel.imageNames[imageIndex]
+            imageView.image = UIImage(named: imageName)
+            barsStackView.arrangedSubviews.forEach { (v) in
+                v.backgroundColor = barDeselectedColor
+            }
+            barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
         } else {
-            imageIndex = max(0, imageIndex - 1)
+            print("Only one picture bro")
         }
         
-        let imageName = cardViewModel.imageNames[imageIndex]
-        imageView.image = UIImage(named: imageName)
-        barsStackView.arrangedSubviews.forEach { (v) in
-            v.backgroundColor = barDeselectedColor
-        }
-        barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
+        
     }
     
     
