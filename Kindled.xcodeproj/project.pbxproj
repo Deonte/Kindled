@@ -19,6 +19,7 @@
 		046DEC17233D314A0050269B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC16233D314A0050269B /* CardView.swift */; };
 		046DEC1A233EB8B40050269B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC19233EB8B40050269B /* User.swift */; };
 		046DEC1E233EC8C90050269B /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC1D233EC8C90050269B /* CardViewModel.swift */; };
+		04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		046DEC16233D314A0050269B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		046DEC19233EB8B40050269B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		046DEC1D233EC8C90050269B /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				046DEC19233EB8B40050269B /* User.swift */,
+				04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */,
 				046DEC17233D314A0050269B /* CardView.swift in Sources */,
 				046DEC15233C022C0050269B /* TopNavigationStackView.swift in Sources */,
 				046DEBFF233BF53C0050269B /* HomeController.swift in Sources */,

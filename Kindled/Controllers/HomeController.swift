@@ -15,12 +15,16 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomControlsStackView()
 
-    let cardViewModels = [
-        User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1").toCardViewModel(),
-        User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2").toCardViewModel(),
-        User(name: "Brittany", age: 29, profession: "Web Developer", imageName: "woman3").toCardViewModel(),
-        User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageName: "lady4c").toCardViewModel()
-    ]
+    let cardViewModels = ([
+        Advertiser(title: "Code with us live", brandName: "Code Bros", posterPhotoName: "coding"),
+        User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1"),
+        User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2"),
+        Advertiser(title: "Ready for a Run?", brandName: "Learn to Run", posterPhotoName: "ltrAD"),
+        User(name: "Brittany", age: 29, profession: "Web Developer", imageName: "woman3"),
+        User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageName: "lady4c")
+        ] as [ProducesCardViewModel]).map { (producer) -> CardViewModel in
+            return producer.toCardViewModel()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

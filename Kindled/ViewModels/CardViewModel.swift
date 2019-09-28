@@ -8,6 +8,11 @@
 
 import UIKit
 
+// Protocol Oriented Programming
+protocol ProducesCardViewModel {
+    func toCardViewModel() -> CardViewModel
+}
+
 struct CardViewModel {
     // Define the properties that the view will display or render out
     let imageName: String
