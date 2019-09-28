@@ -15,22 +15,25 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomControlsStackView()
 
-    let cardViewModels = ([
-        Advertiser(title: "Code with us live", brandName: "Code Bros", posterPhotoName: "coding"),
-        User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1"),
-        User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2"),
-        Advertiser(title: "Ready for a Run?", brandName: "Learn to Run", posterPhotoName: "ltrAD"),
-        User(name: "Brittany", age: 29, profession: "Web Developer", imageName: "woman3"),
-        User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageName: "lady4c")
-        ] as [ProducesCardViewModel]).map { (producer) -> CardViewModel in
-            return producer.toCardViewModel()
-    }
+    let cardViewModels: [CardViewModel] = {
+        let producers = [
+            Advertiser(title: "Code with us live", brandName: "The Code Brothers", posterPhotoName: "coding"),
+            User(name: "Megan", age: 25, profession: "Photographer", imageName: "woman1"),
+            Advertiser(title: "I'm here so I don't get fined.", brandName: "Marshawn Lynch", posterPhotoName: "ML"),
+            User(name: "Jessica", age: 22, profession: "Model", imageName: "woman2"),
+            Advertiser(title: "Ready for a Run?", brandName: "Learn to Run", posterPhotoName: "ltrAD"),
+            User(name: "Brittany", age: 29, profession: "Web Developer", imageName: "woman3"),
+            User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageName: "lady4c")
+        ] as [ProducesCardViewModel]
+        
+        let viewModels = producers.map({return $0.toCardViewModel()})
+        return viewModels
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupDummyCards()
-        
     }
     
     //MARK:- Setup Layout Home Screen
@@ -53,9 +56,7 @@ class HomeController: UIViewController {
         
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
-            cardView.imageView.image = UIImage(named: cardVM.imageName)
-            cardView.informationLabel.attributedText = cardVM.attributedString
-            cardView.informationLabel.textAlignment = cardVM.textAlignment
+            cardView.cardViewModel = cardVM
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
