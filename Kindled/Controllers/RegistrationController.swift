@@ -12,7 +12,7 @@ class RegistrationController: UIViewController {
     
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Select Button", for: .normal)
+        button.setTitle("Select Photo", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
@@ -27,6 +27,7 @@ class RegistrationController: UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: "Enter full name",
                                                       attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15, weight: .regular),
                                                                    NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.backgroundColor = .white
         return tf
     }()
@@ -36,6 +37,7 @@ class RegistrationController: UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: "Enter email",
                                                       attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15, weight: .regular),
                                                                    NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
         return tf
@@ -46,6 +48,7 @@ class RegistrationController: UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: "Enter password",
                                                       attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15, weight: .regular),
                                                                    NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.isSecureTextEntry = true
         tf.backgroundColor = .white
         return tf
@@ -55,12 +58,39 @@ class RegistrationController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Register", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        button.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
+        button.backgroundColor = .lightGray
+        button.setTitleColor(.gray, for: .disabled)
         button.setTitleColor(.white, for: .normal)
+        button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 25
+        
         return button
     }()
+    
+    @objc fileprivate func handleTextChange(textfield: UITextField) {
+        
+        if textfield == fullNameTextField {
+            print("Full name Changing:", textfield.text ?? "")
+            registrationViewModel.fullName = textfield.text
+        } else if textfield == emailTextField {
+            print("Email Changing:", textfield.text ?? "")
+            registrationViewModel.email = textfield.text
+        } else {
+            print("Password Changing:", textfield.text ?? "")
+            registrationViewModel.password = textfield.text
+        }
+        //
+        //        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+        //        registerButton.isEnabled = isFormValid
+        //
+        //        if isFormValid {
+        //            registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
+        //        } else {
+        //            registerButton.backgroundColor = .lightGray
+        //        }
+        //
+    }
     
     // MARK: ViewDidLoad
     
@@ -70,7 +100,7 @@ class RegistrationController: UIViewController {
         setupLayout()
         setupNotificationsObservers()
         setupTapGesture()
-        
+        setupRegistrationViewModelObsever()
         // MARK: Just a way back to the home screen. NOT FINAL
         registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         
@@ -85,6 +115,21 @@ class RegistrationController: UIViewController {
     
     
     // MARK: - Private
+    
+    let registrationViewModel = RegistrationViewModel()
+    
+    fileprivate func setupRegistrationViewModelObsever() {
+        registrationViewModel.isFormValidObserver = { (isFormValid) in
+            print("Form is changing, is it valid?", isFormValid)
+            if isFormValid {
+                self.registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
+                self.registerButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.registerButton.backgroundColor = .lightGray
+                self.registerButton.setTitleColor(.gray, for: .disabled)
+            }
+        }
+    }
     
     
     @objc func handleRegister() {
