@@ -32,11 +32,21 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         setupLayout()
         setupDummyCards()
     }
     
     //MARK:- Setup Layout Home Screen
+    
+    @objc func handleSettings() {
+        print("Settings Tapped")
+        let registrationController = RegistrationController()
+        registrationController.modalPresentationStyle = .fullScreen
+        present(registrationController, animated: true)
+        self.removeFromParent()
+    }
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white

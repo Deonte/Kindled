@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0421751D2343D0DC00DDAE0D /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421751C2343D0DC00DDAE0D /* RegistrationController.swift */; };
+		0421751F2343D32600DDAE0D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421751E2343D32600DDAE0D /* RegistrationView.swift */; };
+		042175212343D8C100DDAE0D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042175202343D8C100DDAE0D /* CustomTextField.swift */; };
 		046DEBFB233BF53C0050269B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFA233BF53C0050269B /* AppDelegate.swift */; };
 		046DEBFD233BF53C0050269B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFC233BF53C0050269B /* SceneDelegate.swift */; };
 		046DEBFF233BF53C0050269B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFE233BF53C0050269B /* HomeController.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0421751C2343D0DC00DDAE0D /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		0421751E2343D32600DDAE0D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		042175202343D8C100DDAE0D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		046DEBF7233BF53C0050269B /* Kindled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kindled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046DEBFA233BF53C0050269B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046DEBFC233BF53C0050269B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,7 +78,7 @@
 			children = (
 				046DEC1C233EC8AA0050269B /* ViewModels */,
 				046DEC0E233BF7320050269B /* Extensions */,
-				046DEC18233EB8930050269B /* Model */,
+				046DEC18233EB8930050269B /* Models */,
 				046DEC11233BFC420050269B /* Views */,
 				046DEC1B233EC8090050269B /* Controllers */,
 				046DEBFA233BF53C0050269B /* AppDelegate.swift */,
@@ -89,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				046DEC0F233BF7420050269B /* Extensions+UIView.swift */,
+				042175202343D8C100DDAE0D /* CustomTextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -99,23 +106,25 @@
 				046DEC14233C022C0050269B /* TopNavigationStackView.swift */,
 				046DEC12233BFC7A0050269B /* HomeBottomControlsStackView.swift */,
 				046DEC16233D314A0050269B /* CardView.swift */,
+				0421751E2343D32600DDAE0D /* RegistrationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		046DEC18233EB8930050269B /* Model */ = {
+		046DEC18233EB8930050269B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				046DEC19233EB8B40050269B /* User.swift */,
 				04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		046DEC1B233EC8090050269B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				046DEBFE233BF53C0050269B /* HomeController.swift */,
+				0421751C2343D0DC00DDAE0D /* RegistrationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,12 +208,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042175212343D8C100DDAE0D /* CustomTextField.swift in Sources */,
 				04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */,
 				046DEC17233D314A0050269B /* CardView.swift in Sources */,
 				046DEC15233C022C0050269B /* TopNavigationStackView.swift in Sources */,
+				0421751F2343D32600DDAE0D /* RegistrationView.swift in Sources */,
 				046DEBFF233BF53C0050269B /* HomeController.swift in Sources */,
 				046DEBFB233BF53C0050269B /* AppDelegate.swift in Sources */,
 				046DEC1A233EB8B40050269B /* User.swift in Sources */,
+				0421751D2343D0DC00DDAE0D /* RegistrationController.swift in Sources */,
 				046DEC13233BFC7A0050269B /* HomeBottomControlsStackView.swift in Sources */,
 				046DEC10233BF7420050269B /* Extensions+UIView.swift in Sources */,
 				046DEBFD233BF53C0050269B /* SceneDelegate.swift in Sources */,

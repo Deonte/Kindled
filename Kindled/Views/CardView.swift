@@ -10,15 +10,19 @@ import UIKit
 
 class CardView: UIView {
     
+    // Configurations
+    fileprivate let threshold: CGFloat = 80
+    fileprivate let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
+    
     var cardViewModel: CardViewModel! {
         didSet {
-            // accessing index 0 will crash if imageNames.count
+            
             let imageName = cardViewModel.imageNames.first ?? ""
             
             imageView.image = UIImage(named: imageName)
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
-        
+            
             if cardViewModel.imageNames.count > 1 {
                 (0..<cardViewModel.imageNames.count).forEach { (_) in
                     let barView = UIView()
@@ -27,7 +31,6 @@ class CardView: UIView {
                     barsStackView.addArrangedSubview(barView)
                 }
                 barsStackView.arrangedSubviews.first?.backgroundColor = .white
-                
                 setupImageIndexObserver()
             }
         }
@@ -73,10 +76,6 @@ class CardView: UIView {
         return gradient
     }()
     
-    // Configurations
-    fileprivate let threshold: CGFloat = 80
-    fileprivate let barDeselectedColor = UIColor(white: 0, alpha: 0.1)
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
@@ -116,21 +115,15 @@ class CardView: UIView {
     }
     
     fileprivate func setupGreadientLayer() {
-        // Draw a gradient with swift
-        // Self.frame is actually the .zero frame
         layer.addSublayer(gradientLayer)
     }
-    
-    //var imageIndex = 0
-    
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
         
         let canTap = cardViewModel.imageNames.count > 1
-        print("handle tap and cycle photos")
         let tapLocation = gesture.location(in: nil)
         let shouldAdvanceNextPhoto = tapLocation.x > frame.width/2 ? true : false
-                  
+        
         if canTap {
             if shouldAdvanceNextPhoto {
                 cardViewModel.advanceToNextPhoto()
@@ -140,29 +133,9 @@ class CardView: UIView {
         } else {
             print("User only has one picture Bro")
         }
-//
-//            if shouldAdvanceNextPhoto {
-//                imageIndex = min(imageIndex + 1, cardViewModel.imageNames.count - 1)
-//            } else {
-//                imageIndex = max(0, imageIndex - 1)
-//            }
-//
-//            let imageName = cardViewModel.imageNames[imageIndex]
-//            imageView.image = UIImage(named: imageName)
-//            barsStackView.arrangedSubviews.forEach { (v) in
-//                v.backgroundColor = barDeselectedColor
-//            }
-//            barsStackView.arrangedSubviews[imageIndex].backgroundColor = .white
-//        } else {
-//            print("User only has one picture Bro")
-//        }
-        
-        
     }
     
-    // Executed whenever the view draws itself
     override func layoutSubviews() {
-        // CardView Frame
         gradientLayer.frame = self.frame
     }
     
@@ -185,7 +158,6 @@ class CardView: UIView {
     fileprivate func handleEnded(gesture: UIPanGestureRecognizer) {
         
         let translationDirection: CGFloat = gesture.translation(in: nil).x > 0 ? 1 : -1
-        
         let shouldDismissCard = abs(gesture.translation(in: nil).x) > threshold
         
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
@@ -210,8 +182,6 @@ class CardView: UIView {
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
         
         let translation = gesture.translation(in: nil)
-        // Handle Rotation
-        // Convert Radians to degrees
         let degrees: CGFloat = translation.x / 20
         let angle = degrees * .pi / 180
         

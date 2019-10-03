@@ -8,14 +8,11 @@
 
 import UIKit
 
-// Protocol Oriented Programming
 protocol ProducesCardViewModel {
     func toCardViewModel() -> CardViewModel
 }
 
-// View model is supposed to represent the state of the view
 class CardViewModel {
-    // Define the properties that the view will display or render out
     let imageNames: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
@@ -34,7 +31,6 @@ class CardViewModel {
         }
     }
     
-    // Reactive Programming
     var imageIndexObserver: ((Int, UIImage) -> ())?
     
     func advanceToNextPhoto() {
