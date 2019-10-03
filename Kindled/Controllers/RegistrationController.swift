@@ -29,6 +29,7 @@ class RegistrationController: UIViewController {
                                                                    NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.backgroundColor = .white
+        tf.textColor = .black
         return tf
     }()
     
@@ -40,6 +41,7 @@ class RegistrationController: UIViewController {
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
+        tf.textColor = .black
         return tf
     }()
     
@@ -51,6 +53,7 @@ class RegistrationController: UIViewController {
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.isSecureTextEntry = true
         tf.backgroundColor = .white
+        tf.textColor = .black
         return tf
     }()
     
@@ -60,11 +63,9 @@ class RegistrationController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.backgroundColor = .lightGray
         button.setTitleColor(.gray, for: .disabled)
-        button.setTitleColor(.white, for: .normal)
         button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 25
-        
         return button
     }()
     
@@ -119,14 +120,15 @@ class RegistrationController: UIViewController {
     let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObsever() {
-        registrationViewModel.isFormValidObserver = { (isFormValid) in
+        registrationViewModel.isFormValidObserver = { [unowned self](isFormValid) in
             print("Form is changing, is it valid?", isFormValid)
+            
+            self.registerButton.isEnabled = isFormValid
             if isFormValid {
                 self.registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
                 self.registerButton.setTitleColor(.white, for: .normal)
             } else {
                 self.registerButton.backgroundColor = .lightGray
-                self.registerButton.setTitleColor(.gray, for: .disabled)
             }
         }
     }
