@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
     
@@ -66,31 +68,20 @@ class RegistrationController: UIViewController {
         button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
     
     @objc fileprivate func handleTextChange(textfield: UITextField) {
         
         if textfield == fullNameTextField {
-            print("Full name Changing:", textfield.text ?? "")
             registrationViewModel.fullName = textfield.text
         } else if textfield == emailTextField {
-            print("Email Changing:", textfield.text ?? "")
             registrationViewModel.email = textfield.text
         } else {
-            print("Password Changing:", textfield.text ?? "")
             registrationViewModel.password = textfield.text
         }
-        //
-        //        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
-        //        registerButton.isEnabled = isFormValid
-        //
-        //        if isFormValid {
-        //            registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
-        //        } else {
-        //            registerButton.backgroundColor = .lightGray
-        //        }
-        //
+       
     }
     
     // MARK: ViewDidLoad
@@ -102,8 +93,7 @@ class RegistrationController: UIViewController {
         setupNotificationsObservers()
         setupTapGesture()
         setupRegistrationViewModelObsever()
-        // MARK: Just a way back to the home screen. NOT FINAL
-        registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+      
         
     }
     
@@ -121,7 +111,6 @@ class RegistrationController: UIViewController {
     
     fileprivate func setupRegistrationViewModelObsever() {
         registrationViewModel.isFormValidObserver = { [unowned self](isFormValid) in
-            print("Form is changing, is it valid?", isFormValid)
             
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
@@ -135,11 +124,34 @@ class RegistrationController: UIViewController {
     
     
     @objc func handleRegister() {
-        print("Register Tapped")
-        let homeController = HomeController()
-        homeController.modalPresentationStyle = .fullScreen
-        present(homeController, animated: true)
-        self.removeFromParent()
+        
+        self.handleTapDismiss()
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        //guard let userName =  fullNameTextField.text else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
+           
+            if let error = error {
+                print(error)
+                self.showHudWithError(error: error)
+                return
+            }
+            print("Successfully registured user:", res?.user.uid ?? "")
+        }
+        
+//        let homeController = HomeController()
+//        homeController.modalPresentationStyle = .fullScreen
+//        present(homeController, animated: true)
+//        self.removeFromParent()
+    }
+    
+    fileprivate func showHudWithError(error: Error) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Failed Registration"
+        hud.detailTextLabel.text = error.localizedDescription
+        hud.show(in: self.view)
+        hud.dismiss(afterDelay: 4)
     }
     
     
