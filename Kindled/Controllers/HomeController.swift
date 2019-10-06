@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeController: UIViewController {
 
@@ -15,20 +16,22 @@ class HomeController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomControlsStackView()
 
-    let cardViewModels: [CardViewModel] = {
-        let producers = [
-            Advertiser(title: "Code with us live", brandName: "The Code Brothers", posterPhotoName: "coding"),
-            User(name: "Megan", age: 25, profession: "Photographer", imageNames: ["woman1", "woman1-2"]),
-            Advertiser(title: "I'm here so I don't get fined.", brandName: "Marshawn Lynch", posterPhotoName: "ML"),
-            User(name: "Jessica", age: 22, profession: "Model", imageNames: ["woman2"]),
-            Advertiser(title: "Ready for a Run?", brandName: "Learn to Run", posterPhotoName: "ltrAD"),
-            User(name: "Brittany", age: 29, profession: "Web Developer", imageNames: ["woman3", "woman3-2", "woman3-3"]),
-            User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageNames: ["lady4c"])
-        ] as [ProducesCardViewModel]
-        
-        let viewModels = producers.map({return $0.toCardViewModel()})
-        return viewModels
-    }()
+//    let cardViewModels: [CardViewModel] = {
+//        let producers = [
+//            Advertiser(title: "Code with us live", brandName: "The Code Brothers", posterPhotoName: "coding"),
+//            User(name: "Megan", age: 25, profession: "Photographer", imageNames: ["woman1", "woman1-2"]),
+//            Advertiser(title: "I'm here so I don't get fined.", brandName: "Marshawn Lynch", posterPhotoName: "ML"),
+//            User(name: "Jessica", age: 22, profession: "Model", imageNames: ["woman2"]),
+//            Advertiser(title: "Ready for a Run?", brandName: "Learn to Run", posterPhotoName: "ltrAD"),
+//            User(name: "Brittany", age: 29, profession: "Web Developer", imageNames: ["woman3", "woman3-2", "woman3-3"]),
+//            User(name: "Jessica", age: 31, profession: "Real Estate Broker", imageNames: ["lady4c"])
+//        ] as [ProducesCardViewModel]
+//
+//        let viewModels = producers.map({return $0.toCardViewModel()})
+//        return viewModels
+//    }()
+    
+    var cardViewModels = [CardViewModel]() // Empty array
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +39,26 @@ class HomeController: UIViewController {
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         setupLayout()
         setupDummyCards()
+        fetchUsersFromFirestore()
     }
     
     //MARK:- Setup Layout Home Screen
+    
+    fileprivate func fetchUsersFromFirestore() {
+        Firestore.firestore().collection("users").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch users:", err)
+                return
+            }
+            snapshot?.documents.forEach({ (documentSnapshot) in
+                let userDictionary = documentSnapshot.data()
+                let user = User(dictionary: userDictionary)
+                self.cardViewModels.append(user.toCardViewModel())
+               // print(user.name, user.imageNames)
+                self.setupDummyCards()
+            })
+        }
+    }
     
     @objc func handleSettings() {
         print("Settings Tapped")
