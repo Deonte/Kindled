@@ -15,7 +15,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let image = info[.originalImage] as? UIImage
-        self.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+//        registrationViewModel.image = image
+        registrationViewModel.bindableImage.value = image
         dismiss(animated: true, completion: nil)
     }
     
@@ -133,7 +134,9 @@ class RegistrationController: UIViewController {
     let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObsever() {
-        registrationViewModel.isFormValidObserver = { [unowned self](isFormValid) in
+        
+        registrationViewModel.bindableIsFormValid.bind { [unowned self](isFormValid) in
+            guard let isFormValid = isFormValid else { return }
             
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
@@ -143,9 +146,26 @@ class RegistrationController: UIViewController {
                 self.registerButton.backgroundColor = .lightGray
             }
         }
+//        registrationViewModel.isFormValidObserver = { [unowned self](isFormValid) in
+//
+//            self.registerButton.isEnabled = isFormValid
+//            if isFormValid {
+//                self.registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
+//                self.registerButton.setTitleColor(.white, for: .normal)
+//            } else {
+//                self.registerButton.backgroundColor = .lightGray
+//            }
+//        }
+//
+        registrationViewModel.bindableImage.bind { [unowned self](img) in
+            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+       
+//        self.registrationViewModel.imageObserver = { [unowned self](img) in
+//            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+//        }
     }
-    
-    
+
     @objc func handleRegister() {
         
         self.handleTapDismiss()
