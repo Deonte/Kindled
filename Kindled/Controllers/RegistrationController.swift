@@ -146,42 +146,40 @@ class RegistrationController: UIViewController {
                 self.registerButton.backgroundColor = .lightGray
             }
         }
-//        registrationViewModel.isFormValidObserver = { [unowned self](isFormValid) in
-//
-//            self.registerButton.isEnabled = isFormValid
-//            if isFormValid {
-//                self.registerButton.backgroundColor = #colorLiteral(red: 0.8197038174, green: 0.09510942549, blue: 0.3320324421, alpha: 1)
-//                self.registerButton.setTitleColor(.white, for: .normal)
-//            } else {
-//                self.registerButton.backgroundColor = .lightGray
-//            }
-//        }
-//
+
         registrationViewModel.bindableImage.bind { [unowned self](img) in
             self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
-       
-//        self.registrationViewModel.imageObserver = { [unowned self](img) in
-//            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
-//        }
+
+        registrationViewModel.bindableIsRegistering.bind { [unowned self](isRegistering) in
+            
+            if isRegistering == true {
+                self.registeringHud.textLabel.text = "Register"
+                self.registeringHud.show(in: self.view)
+            } else {
+                self.registeringHud.dismiss()
+            }
+            
+        }
+        
     }
+    
+    let registeringHud = JGProgressHUD(style: .dark)
 
     @objc func handleRegister() {
         
         self.handleTapDismiss()
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        //guard let userName =  fullNameTextField.text else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
-           
+        
+        registrationViewModel.performRegistration { [weak self] (error) in
             if let error = error {
-                print(error)
-                self.showHudWithError(error: error)
+                self?.showHudWithError(error: error)
                 return
             }
-            print("Successfully registured user:", res?.user.uid ?? "")
+            
+            print("Finished Registering our user.")
         }
+    
         
 //        let homeController = HomeController()
 //        homeController.modalPresentationStyle = .fullScreen
@@ -190,6 +188,7 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func showHudWithError(error: Error) {
+        registeringHud.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed Registration"
         hud.detailTextLabel.text = error.localizedDescription
@@ -222,12 +221,12 @@ class RegistrationController: UIViewController {
         // How to configure how tall the keyboard is
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         let keyboardFrame = value.cgRectValue
-        print(keyboardFrame)
+        //print(keyboardFrame)
         
         // How tall is the gap is from the register button to the bottom of the screen.
         
         let bottomSpace = view.frame.height - overallStackView.frame.origin.y - overallStackView.frame.height
-        print(bottomSpace)
+        //print(bottomSpace)
         
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
@@ -235,7 +234,7 @@ class RegistrationController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self) // If not done will have a retain cycle
+        //NotificationCenter.default.removeObserver(self) // If not done will have a retain cycle
     }
     
     let gradientLayer = CAGradientLayer()
