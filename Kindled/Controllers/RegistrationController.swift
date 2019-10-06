@@ -170,7 +170,6 @@ class RegistrationController: UIViewController {
         
         self.handleTapDismiss()
         
-        
         registrationViewModel.performRegistration { [weak self] (error) in
             if let error = error {
                 self?.showHudWithError(error: error)
@@ -180,11 +179,7 @@ class RegistrationController: UIViewController {
             print("Finished Registering our user.")
         }
     
-        
-//        let homeController = HomeController()
-//        homeController.modalPresentationStyle = .fullScreen
-//        present(homeController, animated: true)
-//        self.removeFromParent()
+  
     }
     
     fileprivate func showHudWithError(error: Error) {
