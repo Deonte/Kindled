@@ -25,6 +25,7 @@
 		046DEC1E233EC8C90050269B /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC1D233EC8C90050269B /* CardViewModel.swift */; };
 		04939584234695E000B52EE8 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04939583234695E000B52EE8 /* RegistrationViewModel.swift */; };
 		04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */; };
+		04F11BCE234E3E6100734B62 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F11BCD234E3E6100734B62 /* SettingsController.swift */; };
 		04F34D55234994060092D004 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F34D54234994060092D004 /* Bindable.swift */; };
 		E6E7C3F7A1F044055A114AA5 /* Pods_Kindled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BB896CABA3F5B2B71B4D22 /* Pods_Kindled.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		046DEC1D233EC8C90050269B /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		04939583234695E000B52EE8 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		04F11BCD234E3E6100734B62 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		04F34D54234994060092D004 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		16F96E624AAD37DA1A01039E /* Pods-Kindled.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kindled.release.xcconfig"; path = "Target Support Files/Pods-Kindled/Pods-Kindled.release.xcconfig"; sourceTree = "<group>"; };
 		1F2FE868024137189F6192B4 /* Pods-Kindled.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kindled.debug.xcconfig"; path = "Target Support Files/Pods-Kindled/Pods-Kindled.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				046DEBFE233BF53C0050269B /* HomeController.swift */,
+				04F11BCD234E3E6100734B62 /* SettingsController.swift */,
 				0421751C2343D0DC00DDAE0D /* RegistrationController.swift */,
 			);
 			path = Controllers;
@@ -288,6 +291,7 @@
 			files = (
 				042175212343D8C100DDAE0D /* CustomTextField.swift in Sources */,
 				04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */,
+				04F11BCE234E3E6100734B62 /* SettingsController.swift in Sources */,
 				046DEC17233D314A0050269B /* CardView.swift in Sources */,
 				04939584234695E000B52EE8 /* RegistrationViewModel.swift in Sources */,
 				046DEC15233C022C0050269B /* TopNavigationStackView.swift in Sources */,

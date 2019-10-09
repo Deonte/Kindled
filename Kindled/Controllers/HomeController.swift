@@ -27,6 +27,8 @@ class HomeController: UIViewController {
         setupLayout()
         setupFirestoreUserCards()
         fetchUsersFromFirestore()
+        
+       
     }
     
     
@@ -37,9 +39,7 @@ class HomeController: UIViewController {
         fetchUsersFromFirestore()
     }
     
-    
-    
-    
+
     
     //MARK:- Setup Layout Home Screen
     
@@ -82,10 +82,10 @@ class HomeController: UIViewController {
     
     @objc func handleSettings() {
         print("Settings Tapped")
-        let registrationController = RegistrationController()
-        registrationController.modalPresentationStyle = .fullScreen
-        present(registrationController, animated: true)
-        self.removeFromParent()
+        let settingsController = SettingsController()
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true)
+        //self.removeFromParent()
     }
     
     fileprivate func setupLayout() {
