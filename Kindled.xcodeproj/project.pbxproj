@@ -10,6 +10,7 @@
 		0421751D2343D0DC00DDAE0D /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421751C2343D0DC00DDAE0D /* RegistrationController.swift */; };
 		0421751F2343D32600DDAE0D /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0421751E2343D32600DDAE0D /* RegistrationView.swift */; };
 		042175212343D8C100DDAE0D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042175202343D8C100DDAE0D /* CustomTextField.swift */; };
+		043998D2234A705F00F89A8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 043998D1234A705F00F89A8E /* GoogleService-Info.plist */; };
 		046DEBFB233BF53C0050269B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFA233BF53C0050269B /* AppDelegate.swift */; };
 		046DEBFD233BF53C0050269B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFC233BF53C0050269B /* SceneDelegate.swift */; };
 		046DEBFF233BF53C0050269B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEBFE233BF53C0050269B /* HomeController.swift */; };
@@ -23,7 +24,6 @@
 		046DEC1A233EB8B40050269B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC19233EB8B40050269B /* User.swift */; };
 		046DEC1E233EC8C90050269B /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046DEC1D233EC8C90050269B /* CardViewModel.swift */; };
 		04939584234695E000B52EE8 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04939583234695E000B52EE8 /* RegistrationViewModel.swift */; };
-		049395862349790F00B52EE8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 049395852349790F00B52EE8 /* GoogleService-Info.plist */; };
 		04B3FEE1233ED0E000DA39B4 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */; };
 		04F34D55234994060092D004 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F34D54234994060092D004 /* Bindable.swift */; };
 		E6E7C3F7A1F044055A114AA5 /* Pods_Kindled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BB896CABA3F5B2B71B4D22 /* Pods_Kindled.framework */; };
@@ -33,6 +33,7 @@
 		0421751C2343D0DC00DDAE0D /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		0421751E2343D32600DDAE0D /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		042175202343D8C100DDAE0D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		043998D1234A705F00F89A8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		046DEBF7233BF53C0050269B /* Kindled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kindled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046DEBFA233BF53C0050269B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046DEBFC233BF53C0050269B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		046DEC19233EB8B40050269B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		046DEC1D233EC8C90050269B /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		04939583234695E000B52EE8 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		049395852349790F00B52EE8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04B3FEE0233ED0E000DA39B4 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		04F34D54234994060092D004 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		16F96E624AAD37DA1A01039E /* Pods-Kindled.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kindled.release.xcconfig"; path = "Target Support Files/Pods-Kindled/Pods-Kindled.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,9 +99,8 @@
 				046DEC00233BF53C0050269B /* Main.storyboard */,
 				046DEC03233BF53C0050269B /* Assets.xcassets */,
 				046DEC05233BF53C0050269B /* LaunchScreen.storyboard */,
-				049395852349790F00B52EE8 /* GoogleService-Info.plist */,
+				043998D1234A705F00F89A8E /* GoogleService-Info.plist */,
 				046DEC08233BF53C0050269B /* Info.plist */,
-				04F34D54234994060092D004 /* Bindable.swift */,
 			);
 			path = Kindled;
 			sourceTree = "<group>";
@@ -109,6 +108,7 @@
 		046DEC0E233BF7320050269B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				04F34D54234994060092D004 /* Bindable.swift */,
 				046DEC0F233BF7420050269B /* Extensions+UIView.swift */,
 				042175202343D8C100DDAE0D /* CustomTextField.swift */,
 			);
@@ -232,7 +232,7 @@
 			files = (
 				046DEC07233BF53C0050269B /* LaunchScreen.storyboard in Resources */,
 				046DEC04233BF53C0050269B /* Assets.xcassets in Resources */,
-				049395862349790F00B52EE8 /* GoogleService-Info.plist in Resources */,
+				043998D2234A705F00F89A8E /* GoogleService-Info.plist in Resources */,
 				046DEC02233BF53C0050269B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
