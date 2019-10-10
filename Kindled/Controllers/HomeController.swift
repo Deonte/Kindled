@@ -23,12 +23,12 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        topStackView.messageButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setupLayout()
         setupFirestoreUserCards()
         fetchUsersFromFirestore()
         
-       
     }
     
     
@@ -85,6 +85,13 @@ class HomeController: UIViewController {
         let settingsController = SettingsController()
         let navController = UINavigationController(rootViewController: settingsController)
         present(navController, animated: true)
+        //self.removeFromParent()
+    }
+    
+    @objc func handleLogin() {
+        print("Settings Tapped")
+        let settingsController = RegistrationController()
+        present(settingsController, animated: true)
         //self.removeFromParent()
     }
     
