@@ -11,10 +11,16 @@ import Firebase
 import SDWebImage
 import JGProgressHUD
 
+protocol SettingsControllerDelegate {
+    func didSaveSettings()
+}
+
 
 class SettingsController: UITableViewController {
     
     var user: User?
+    
+    var delegate: SettingsControllerDelegate?
     
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
@@ -65,6 +71,11 @@ class SettingsController: UITableViewController {
             }
             
             print("Finished saving user info")
+            self.dismiss(animated: true) {
+                print("Dismissal Complete")
+                self.delegate?.didSaveSettings()
+                //HomeController.fetchCurrentUser() // Refetch cards inside homeController
+            }
         }
         
     }
